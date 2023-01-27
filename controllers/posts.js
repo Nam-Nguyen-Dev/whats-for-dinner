@@ -42,6 +42,14 @@ module.exports = {
       console.log(err)
     }
   },
+  getRandom: async (req, res) => {
+    try {
+      const post = await Post.aggregate([{ $sample: { size: 1 } }])
+      res.render("post.ejs", { post: post[0], user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
