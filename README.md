@@ -3,7 +3,7 @@ Tired of fighting over what to eat? Can't make up your mind? Want to keep track 
 
 **Link to project:** https://whats-for-dinner.cyclic.app/
 
-![alt tag](http://placecorgi.com/1200/650)
+![Website showing recipes and food](https://github.com/Nam-Nguyen-Dev/whats-for-dinner/blob/main/public/imgs/wfdss.PNG)
 
 ## How It's Made:
 
