@@ -14,6 +14,8 @@ module.exports = {
   getRecipes: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
+      console.log(posts)
+      console.log(req.user.id)
       res.render("my-recipes.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);

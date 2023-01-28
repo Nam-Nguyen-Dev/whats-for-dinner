@@ -12,11 +12,12 @@
           <p class="card-text"><%= posts[i].caption %>.</p>
           <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">View Recipe</a>
           <!-- <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">Edit</a> -->
-          <%if(posts.user == user.id){ %>
+          <%if(posts[i].user == user.id){ %>
+          <div><br></div>
           <form
-            action="/post/deletePost/<%= post.id %>?_method=DELETE"
+            action="/post/deletePost/<%= posts[i]._id %>?_method=DELETE"
             method="POST"
-            class="col-3"
+            class="col"
           >
             <button class="btn btn-primary fa fa-trash" type="submit"></button>
           </form>
