@@ -45,7 +45,8 @@ module.exports = {
   getRandom: async (req, res) => {
     try {
       const post = await Post.aggregate([{ $sample: { size: 1 } }])
-      res.render("post.ejs", { post: post[0], user: req.user });
+      const user = await User.findById(post[0].user)
+      res.render("post.ejs", { post: post[0], user: user });
     } catch (err) {
       console.log(err);
     }
@@ -53,7 +54,8 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      res.render("post.ejs", { post: post, user: req.user });
+      const user = await User.findById(post.user)
+      res.render("post.ejs", { post: post, user: user });
     } catch (err) {
       console.log(err);
     }
