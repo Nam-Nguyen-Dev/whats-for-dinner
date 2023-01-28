@@ -1,7 +1,7 @@
 # What's for dinner?
 Tired of fighting over what to eat? Can't make up your mind? Want to keep track and share your favorite recipes? We've got you covered!
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
+**Link to project:** https://whats-for-dinner.cyclic.app/
 
 ![alt tag](http://placecorgi.com/1200/650)
 
