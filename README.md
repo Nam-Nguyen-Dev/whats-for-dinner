@@ -1,3 +1,28 @@
+# What's for dinner?
+Tired of fighting over what to eat? Can't make up your mind? Want to keep track and share your favorite recipes? We've got you covered!
+
+**Link to project:** http://recruiters-love-seeing-live-demos.com/
+
+![alt tag](http://placecorgi.com/1200/650)
+
+## How It's Made:
+
+**Tech used:** HTML, CSS, EJS, Node, Express, MongoDB
+
+This project utilizes the Express module in Node to provide an MVC framework. The view is written in EJS, a Javascript templating language. MongoDB is used to store session, user, and recipe information. Cloudinary is the image hoster of choice and passport.js is in use for authentication.
+
+## Optimizations
+
+Initial attempts to generate a random recipe were dependent on being able to grab a random document from the MongoDB collection. This proves to be difficult as MongoDB auto-magically generates unique id's for each document. One potential solution for this issue is to get the count of all docouments in the collection, generate a random number between 0-count, and then skip that many number of documents to return a random one.
+
+A newer solution now is to use MongoDB's aggregate method which will return a sample size of your choice and additionally allows you the ability to select random documents from a filtered subset of the collection.
+
+## Lessons Learned:
+
+I used Bootstrap to quickly build out the prototype and found out how helpful it can be to add a bit of style efficiently. Tailwind CSS code snippets are also very handy! I'd like to build a site with React next.
+
+
+
 # Install
 
 `npm install`
