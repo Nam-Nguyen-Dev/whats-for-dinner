@@ -14,6 +14,8 @@
           <!-- <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">Edit</a> -->
           <%if(posts[i].user == user.id){ %>
           <div><br></div>
+          <a href="/post/edit/<%= posts[i]._id%>" class="btn btn-primary">Edit Recipe</a>
+          <div><br></div>
           <form
             action="/post/deletePost/<%= posts[i]._id %>?_method=DELETE"
             method="POST"

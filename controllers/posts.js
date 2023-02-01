@@ -186,4 +186,14 @@ module.exports = {
       res.redirect("/my-recipes");
     }
   },
+  getEditPost: async (req, res) => {
+    try {
+      let post = await Post.findById({ _id: req.params.id });
+      console.log(post)
+      console.log(req.user)
+      res.render("edit-post.ejs", { post: post, user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };

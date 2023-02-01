@@ -15,4 +15,6 @@ router.put("/bookmarkPost/:id", postsController.bookmarkPost)
 
 router.delete("/deletePost/:id", postsController.deletePost);
 
+router.get("/edit/:id", ensureAuth, postsController.getEditPost);
+
 module.exports = router;
