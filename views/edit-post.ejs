@@ -9,7 +9,7 @@
           <!-- </div> --> 
           <div class="mt-5">
             <h2>Edit recipe</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+            <form action="/post/editPost/<%= post._id %>?_method=PUT" method="POST">
               <div class="mb-3">
                   <label for="title" class="form-label">Recipe Title</label>
                   <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>">
@@ -48,15 +48,11 @@
               </div>
               <div class="mb-3">
                 <label for="ingredients" class="form-label">Ingredients</label>
-                <textarea class="form-control" id="ingredients" name="ingredients" placeholder="Put each ingredient on its own line." rows="5"></textarea>
+                <textarea class="form-control" id="ingredients" name="ingredients" placeholder="Put each ingredient on its own line." rows="5"><%= post.ingredients.join("") %></textarea>
               </div>
               <div class="mb-3">
                 <label for="directions" class="form-label">Directions</label>
-                <textarea class="form-control" id="directions" name="directions" placeholder="Put each step on its own line." rows="5"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
+                <textarea class="form-control" id="directions" name="directions" placeholder="Put each step on its own line." rows="5"><%= post.directions.join("") %></textarea>
               </div>
               <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
             </form>
