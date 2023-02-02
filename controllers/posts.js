@@ -14,8 +14,6 @@ module.exports = {
   getRecipes: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-      console.log(posts)
-      console.log(req.user.id)
       res.render("my-recipes.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -65,21 +63,24 @@ module.exports = {
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
+      if (req.file){
+        const result = await cloudinary.uploader.upload(req.file.path);
 
-      await Post.create({
-        title: req.body.title,
-        image: result.secure_url,
-        cloudinaryId: result.public_id,
-        caption: req.body.caption,
-        country: req.body.country,
-        dish: req.body.dish,
-        ingredients: req.body.ingredients.trim().split('\n'),
-        directions: req.body.directions.trim().split('\n'),
-        likes: 0,
-        user: req.user.id,
-      });
-      console.log("Post has been added!");
+        await Post.create({
+          title: req.body.title,
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+          caption: req.body.caption,
+          country: req.body.country,
+          dish: req.body.dish,
+          ingredients: req.body.ingredients.trim().split('\n'),
+          directions: req.body.directions.trim().split('\n'),
+          likes: 0,
+          user: req.user.id,
+        });
+        console.log("Post has been added!");
+      }
+
       res.redirect("/my-recipes");
     } catch (err) {
       console.log(err);
@@ -189,8 +190,6 @@ module.exports = {
   getEditPost: async (req, res) => {
     try {
       let post = await Post.findById({ _id: req.params.id });
-      console.log(post)
-      console.log(req.user)
       res.render("edit-post.ejs", { post: post, user: req.user });
     } catch (err) {
       console.log(err);
@@ -198,28 +197,35 @@ module.exports = {
   },
   editPost: async (req, res) => {
     try {
+    let post = await Post.findById({ _id: req.params.id });
       // Upload image to cloudinary
-      //const result = await cloudinary.uploader.upload(req.file.path);
-      let post = await Post.findById({ _id: req.params.id });
-      console.log('edit post')
-      console.log(req.body)
+       console.log('test',req)
+      if (req.body.file){
+        await cloudinary.uploader.destroy(post.cloudinaryId);
+        const result = await cloudinary.uploader.upload(req.body.file.path);
+        await Post.findOneAndUpdate(
+          {_id:req.params.id},
+          {
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+          }
+        );
+      } 
+    
 
       await Post.findOneAndUpdate(
         {_id:req.params.id},
         {
         title: req.body.title,
-        //image: result.secure_url,
-        //cloudinaryId: result.public_id,
         caption: req.body.caption,
         country: req.body.country,
         dish: req.body.dish,
         ingredients: req.body.ingredients.trim().split('\n'),
         directions: req.body.directions.trim().split('\n'),
-        //likes: 0,
-        //user: req.user.id,
         }
       );
-      console.log("Post has been added!");
+
+      console.log("Post has been edited!");
       res.redirect("/my-recipes");
     } catch (err) {
       console.log(err);
