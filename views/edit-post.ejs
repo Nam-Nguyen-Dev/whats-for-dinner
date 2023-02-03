@@ -1,0 +1,73 @@
+<%- include('partials/logged-in-header') -%>
+<div class="container card-container">
+  <div class="row justify-content-center">
+      <div class="col-6">
+          <!-- <div>
+              <p><strong>User Name</strong>: <%= user.userName %></p>
+              <p><strong>Email</strong>: <%= user.email %></p>
+              <!-- <a href="/logout" class="col-3 btn btn-primary">Logout</a> -->
+          <!-- </div> --> 
+          <div class="mt-5">
+            <%if(post.user == user.id){ %>
+                <h2>Edit recipe</h2>
+                <form action="/post/editPost/<%= post._id %>?_method=PUT" method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Recipe Title</label>
+                        <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>">
+                    </div>
+                    <div class="mb-3">
+                    <label for="country" class="form-label">Where your recipe comes from</label>
+                    <select class="form-select" aria-label="Default select example" id="country" name="country">
+                        <option value="<%= post.country %>" selected><%= post.country %></option>
+                        <option value="American">American</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="French">French</option>
+                        <option value="Greek">Greek</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Turkish">Turkish</option>
+                        <option value="Thai">Thai</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="basic-url" class="form-label">Dish Type</label>
+                        <select class="form-select" aria-label="Default select example" id="dish" name="dish">
+                        <option value="<%= post.dish %>" selected><%= post.dish %></option>
+                        <option value="Appetizer">Appetizer</option>
+                        <option value="Main Dish">Main Dish</option>
+                        <option value="Side Dish">Side Dish</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Side Dish">Breakfast</option>
+                        </select>
+                        </div>
+                    <div class="mb-3">
+                        <label for="caption" class="form-label">Description</label>
+                        <textarea class="form-control" id="caption" name="caption"><%= post.caption %></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ingredients" class="form-label">Ingredients</label>
+                        <textarea class="form-control" id="ingredients" name="ingredients" placeholder="Put each ingredient on its own line." rows="5"><%= post.ingredients.join("") %></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="directions" class="form-label">Directions</label>
+                        <textarea class="form-control" id="directions" name="directions" placeholder="Put each step on its own line." rows="5"><%= post.directions.join("") %></textarea>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="imgUpload" class="form-label">Upload to replace previous image</label>
+                        <input type="file" class="form-control" id="imageUpload" name="file">
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                </form>
+            <%} else{%>
+                <h2>You shall not pass!</h2>
+            <%}%>
+          </div>
+      </div>
+    </div>
+  </div>
+<%- include('partials/footer') -%>
