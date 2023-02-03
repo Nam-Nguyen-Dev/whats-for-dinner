@@ -39,11 +39,29 @@ passport.use(new GoogleStrategy({
   callbackURL: "/auth/google/callback",
   passReqToCallback   : true
 },
-function(request, accessToken, refreshToken, profile, done) {
-  //User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    //return done(err, user);
-    console.log(profile)
-  //});
+async function(request, accessToken, refreshToken, profile, done) {
+
+    const newUser = {
+      googleId: profile.id,
+      userName: profile.displayName,
+      firstName: profile.name.givenName,
+      lastName: profile.name.familyName,
+      image: profile.photos[0].value
+    }
+
+    try {
+      let user = await User.findOne({ googleId: profile.id })
+
+      if (user) {
+        done(null, user)
+      } else {
+        user = await User.create(newUser)
+        done(null, user)
+      }
+    } catch (error) {
+      console.log(err)
+    }
+
 }
 ));
 
