@@ -27,6 +27,19 @@
             btn btn-primary" type="submit"></button>
           </form>
 
+          <h2>Add a comment</h2>
+          <form action="/comments/createComment/<%= post._id %>" method="POST">
+            <div class="mb-3">
+                <label for="comment" class="form-label"></label>
+                <input type="text" class="form-control" id="comment" name="comment">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <% for(var i=0; i<comments.length; i++) {%>
+            <ul><%=comments[i].comment%></ul>
+            <% } %>
+
         </div>
       </div>
       <div class="col-md-6">
