@@ -59,7 +59,7 @@ async function(request, accessToken, refreshToken, profile, done) {
         done(null, user)
       }
     } catch (error) {
-      console.log(err)
+      console.log(error)
     }
 
 }

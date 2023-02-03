@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
   password: String,
-  googleID: {
+  googleId: {
     type: String,
   },
   firstName: {
@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema({
   },
   image: {
     type: String
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 });
 
