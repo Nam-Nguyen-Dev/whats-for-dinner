@@ -1,5 +1,5 @@
 const LocalStrategy = require("passport-local").Strategy;
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const mongoose = require("mongoose");
 const User = require("../models/User");
 
@@ -40,10 +40,10 @@ passport.use(new GoogleStrategy({
   passReqToCallback   : true
 },
 function(request, accessToken, refreshToken, profile, done) {
-  User.findOrCreate({ googleId: profile.id }, function (err, user) {
+  //User.findOrCreate({ googleId: profile.id }, function (err, user) {
     //return done(err, user);
     console.log(profile)
-  });
+  //});
 }
 ));
 
