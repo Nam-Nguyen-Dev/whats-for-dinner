@@ -5,7 +5,7 @@
     <div class="row">
       <h1><%= post.title %></h1>
       <p><%= post.caption %></p>
-      <p>By: <%= user.userName %></p>
+      <p>By: <%= author.userName %></p>
       <div class="col-md-6">
         <img src="<%= post.image%>" class="img-fluid" alt="Responsive image">
         <div class="row row-cols-3">
@@ -26,7 +26,23 @@
           <button class="<%if(post.bookmarks.includes(user.id)){ %> bi bi-bookmark-fill<%} else { %> bi bi-bookmark <% }%>
             btn btn-primary" type="submit"></button>
           </form>
-
+        </div>
+        <div>
+          <br><br>
+          <h2>Add a comment</h2>
+          <form action="/comments/createComment/<%= post._id %>" method="POST">
+            <div class="mb-3">
+                <label for="comment" class="form-label"></label>
+                <input type="text" class="form-control" id="comment" name="comment">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <br><br>
+          <h3>Comments: </h3>
+          <% for(var i=0; i<comments.length; i++) {%>
+            <b><%=commentUsers[i]%></b> says: <br>"<%=comments[i].comment%>" <br><br>
+            <% } %>
         </div>
       </div>
       <div class="col-md-6">
