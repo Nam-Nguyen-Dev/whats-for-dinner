@@ -12,11 +12,11 @@
             <form action="/post/createPost" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
                   <label for="title" class="form-label">Recipe Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
+                  <input type="text" class="form-control" id="title" name="title" required>
               </div>
               <div class="mb-3">
               <label for="country" class="form-label">Where your recipe comes from</label>
-              <select class="form-select" aria-label="Default select example" id="country" name="country">
+              <select class="form-select" aria-label="Default select example" id="country" name="country" required>
                 <option selected>Select Cuisine</option>
                 <option value="American">American</option>
                 <option value="Chinese">Chinese</option>
@@ -33,7 +33,7 @@
               </div>
               <div class="mb-3">
                 <label for="basic-url" class="form-label">Dish Type</label>
-                <select class="form-select" aria-label="Default select example" id="dish" name="dish">
+                <select class="form-select" aria-label="Default select example" id="dish" name="dish" required>
                   <option selected>Please Select</option>
                   <option value="Appetizer">Appetizer</option>
                   <option value="Main Dish">Main Dish</option>
@@ -44,15 +44,15 @@
                 </div>
               <div class="mb-3">
                 <label for="caption" class="form-label">Description</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
+                <textarea class="form-control" id="caption" name="caption" required></textarea>
               </div>
               <div class="mb-3">
                 <label for="ingredients" class="form-label">Ingredients</label>
-                <textarea class="form-control" id="ingredients" name="ingredients" placeholder="Put each ingredient on its own line." rows="5"></textarea>
+                <textarea class="form-control" id="ingredients" name="ingredients" placeholder="Put each ingredient on its own line." rows="5" required></textarea>
               </div>
               <div class="mb-3">
                 <label for="directions" class="form-label">Directions</label>
-                <textarea class="form-control" id="directions" name="directions" placeholder="Put each step on its own line." rows="5"></textarea>
+                <textarea class="form-control" id="directions" name="directions" placeholder="Put each step on its own line." rows="5" required></textarea>
               </div>
               <div class="mb-3">
                 <label for="imgUpload" class="form-label">Image</label>
