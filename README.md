@@ -19,7 +19,7 @@ A newer solution now is to use MongoDB's aggregate method which will return a sa
 
 ## Lessons Learned:
 
-I used Bootstrap to quickly build out the prototype and found out how helpful it can be to add a bit of style efficiently. Tailwind CSS code snippets are also very handy! I'd like to build a site with React next.
+I used Bootstrap to quickly build out the prototype and found out how helpful it can be to add a bit of style efficiently. Tailwind CSS code snippets are also very handy! I'd like to build a site with React next. I also learned how to implement Google OAuth alongside local auth. 
 
 
 
@@ -37,6 +37,8 @@ I used Bootstrap to quickly build out the prototype and found out how helpful it
   - CLOUD_NAME = `your cloudinary cloud name`
   - API_KEY = `your cloudinary api key`
   - API_SECRET = `your cloudinary api secret`
+  - GOOGLE_CLIENT_ID = `your google client id`
+  - GOOGLE_CLIENT_SECRET = `your google client api secret`
 
 ---
 
