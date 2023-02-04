@@ -76,8 +76,10 @@ module.exports = {
       if (req.file){
         const result = await cloudinary.uploader.upload(req.file.path);
 
+        const standardizedTitle = req.body.title.split(" ").map(e => e[0].toUpperCase() + e.slice(1).toLowerCase()).join(" ")
+
         await Post.create({
-          title: req.body.title,
+          title: standardizedTitle,
           image: result.secure_url,
           cloudinaryId: result.public_id,
           caption: req.body.caption,
@@ -96,21 +98,6 @@ module.exports = {
       console.log(err);
     }
   },
-  //Oriinal liked post logic
-  // likePost: async (req, res) => {
-  //   try {
-  //     await Post.findOneAndUpdate(
-  //       { _id: req.params.id },
-  //       {
-  //         $inc: { likes: 1 },
-  //       }
-  //     );
-  //     console.log("Likes +1");
-  //     res.redirect(`/post/${req.params.id}`);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
   likePost: async (req, res)=>{
     var liked = false
     try{
@@ -207,9 +194,9 @@ module.exports = {
   },
   editPost: async (req, res) => {
     try {
-    let post = await Post.findById({ _id: req.params.id });
+    //let post = await Post.findById({ _id: req.params.id });
       // Upload image to cloudinary
-       console.log('test',req)
+       //console.log('test',req)
       if (req.body.file){
         await cloudinary.uploader.destroy(post.cloudinaryId);
         const result = await cloudinary.uploader.upload(req.body.file.path);
@@ -222,11 +209,12 @@ module.exports = {
         );
       } 
     
+      const standardizedTitle = req.body.title.split(" ").map(e => e[0].toUpperCase() + e.slice(1).toLowerCase()).join(" ")
 
       await Post.findOneAndUpdate(
         {_id:req.params.id},
         {
-        title: req.body.title,
+        title: standardizedTitle,
         caption: req.body.caption,
         country: req.body.country,
         dish: req.body.dish,
