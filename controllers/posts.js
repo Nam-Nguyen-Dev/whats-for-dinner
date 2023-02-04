@@ -2,6 +2,7 @@ const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const User = require("../models/User")
 const Comment = require("../models/Comment")
+const capitalize = require("../utils/capitalize")
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -76,7 +77,7 @@ module.exports = {
       if (req.file){
         const result = await cloudinary.uploader.upload(req.file.path);
 
-        const standardizedTitle = req.body.title.split(" ").map(e => e[0].toUpperCase() + e.slice(1).toLowerCase()).join(" ")
+        const standardizedTitle = capitalize.capitalize(req.body.title)
 
         await Post.create({
           title: standardizedTitle,
@@ -209,7 +210,7 @@ module.exports = {
         );
       } 
     
-      const standardizedTitle = req.body.title.split(" ").map(e => e[0].toUpperCase() + e.slice(1).toLowerCase()).join(" ")
+      const standardizedTitle = capitalize.capitalize(req.body.title)
 
       await Post.findOneAndUpdate(
         {_id:req.params.id},
