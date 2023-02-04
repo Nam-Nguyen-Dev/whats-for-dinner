@@ -12,6 +12,7 @@ const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 const authRoutes = require("./routes/auth");
 const commentRoutes = require("./routes/comments");
+const searchRoutes = require("./routes/search");
 
 //Use .env file in config folder
 require("dotenv").config();
@@ -57,6 +58,7 @@ app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 app.use("/auth", authRoutes);
 app.use("/comments", commentRoutes);
+app.use("/search", searchRoutes);
 
 //Connect To Database
 //Server Running

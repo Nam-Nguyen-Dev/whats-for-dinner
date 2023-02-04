@@ -43,6 +43,14 @@
               <a class="nav-link" href="/bookmarks">Favorite Recipes</a>
               <a class="nav-link" href="/profile">Add Recipe</a>
               <a class="nav-link" href="/random">Random Recipe!</a>
+              <div>
+                <form action="/search" method="POST" class="form-control form-control-sm" >
+                  <label for="searchIngredients" class="form-label"></label>
+                  <input type="text" class="form-control" id="searchIngredients" name="searchIngredients" placeholder="Search Ingredients...">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+              
               <a href="/logout" class="btn btn-dark btn-nav" role="button">Logout</a>
           </div>
         </div>
