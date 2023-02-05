@@ -1,0 +1,24 @@
+<%- include('partials/logged-in-header') -%>
+<div class="container card-container">
+  <div class="row justify-content-center">
+      <div class="col-6">
+          <div class="mt-5">
+            <%if(comment.user == user.id){ %>
+                <h2>Edit comment</h2>
+                <form action="/comments/editComment/<%= comment._id %>?_method=PUT" method="POST">
+                    <div class="mb-3">
+                        <label for="comment" class="form-label"></label>
+                        <input type="text" class="form-control" id="comment" name="comment" value="<%= comment.comment %>">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+                
+                
+            <%} else{%>
+                <h2>You shall not pass!</h2>
+            <%}%>
+          </div>
+      </div>
+    </div>
+  </div>
+<%- include('partials/footer') -%>

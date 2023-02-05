@@ -41,20 +41,15 @@ module.exports = {
       editComment: async (req, res) => {
         try {
     
-/*           await Comment.findOneAndUpdate(
+          let comment = await Comment.findOneAndUpdate(
             {_id:req.params.id},
             {
-            title: standardizedTitle,
-            caption: req.body.caption,
-            country: req.body.country,
-            dish: req.body.dish,
-            ingredients: req.body.ingredients.trim().split('\n'),
-            directions: req.body.directions.trim().split('\n'),
+            comment: req.body.comment
             }
-          ); */
+          );
     
           console.log("Post has been edited!");
-          res.redirect("back");
+          res.redirect("/post/" + comment.post);
         } catch (err) {
           console.log(err);
         }
