@@ -42,10 +42,10 @@
           <b><%=commentUsers[i]%></b> says: <br>"<%=comments[i].comment%>" <br><br>
 
           <%if(comments[i].user == user.id){ %>
-            <a href="/comment/edit/<%= comments[i]._id%>" class="btn btn-primary">Edit Comment</a>
+            <a href="/comments/edit/<%= comments[i]._id%>" class="btn btn-primary">Edit Comment</a>
             <div><br></div>
             <form
-              action="/comment/deleteComment/<%= comments[i]._id %>?_method=DELETE"
+              action="/comments/deleteComment/<%= comments[i]._id %>?_method=DELETE"
               method="POST"
               class="col"
               onSubmit="return confirm('Are you sure you wish to delete?');"
