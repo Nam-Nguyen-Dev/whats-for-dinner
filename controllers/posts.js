@@ -31,7 +31,7 @@ module.exports = {
   },
   getFeed: async (req,res)=>{
     try{
-      const posts = await Post.find()
+      const posts = await Post.find({ private: {$ne : true} })
       .sort({ createdAt: 'desc' })
       .lean()
       var users = []
@@ -86,6 +86,7 @@ module.exports = {
           caption: req.body.caption,
           country: req.body.country,
           dish: req.body.dish,
+          private: req.body.private,
           ingredients: req.body.ingredients.trim().split('\n'),
           directions: req.body.directions.trim().split('\n'),
           likes: 0,
