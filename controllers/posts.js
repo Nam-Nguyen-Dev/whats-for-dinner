@@ -47,7 +47,10 @@ module.exports = {
   },
   getRandom: async (req, res) => {
     try {
-      const post = await Post.aggregate([{ $sample: { size: 1 } }])
+      const post = await Post.aggregate([
+        { $match: { private: { $ne: true } } },
+        { $sample: { size: 1 } }
+      ])
 
       res.redirect("/post/" + post[0]._id)
     } catch (err) {
