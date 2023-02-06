@@ -15,7 +15,8 @@ module.exports = {
   },
   getRecipes: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
+      const posts = await Post.find({ user: req.user.id })
+      .sort({ createdAt: 'desc' });
       res.render("my-recipes.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -23,7 +24,7 @@ module.exports = {
   },
   getBookmarks: async (req, res) => {
     try {
-      const posts = await Post.find();
+      const posts = await Post.find().sort({ createdAt: 'desc' });
       res.render("favorite-recipes.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -220,6 +221,7 @@ module.exports = {
         caption: req.body.caption,
         country: req.body.country,
         dish: req.body.dish,
+        private: req.body.private,
         ingredients: req.body.ingredients.trim().split('\n'),
         directions: req.body.directions.trim().split('\n'),
         }
