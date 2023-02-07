@@ -17,7 +17,7 @@ router.delete("/deletePost/:id", postsController.deletePost);
 
 router.get("/editPost/:id", ensureAuth, postsController.getEditPost);
 
-router.put("/editPost/:id", postsController.editPost)
+router.put("/editPost/:id", upload.single("file"), postsController.editPost)
 
 router.get("/editImage/:id", ensureAuth, postsController.getEditImage);
 

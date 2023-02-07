@@ -202,7 +202,7 @@ module.exports = {
     try {    
       const standardizedTitle = capitalize.capitalize(req.body.title)
 
-      await Post.findOneAndUpdate(
+      let post = await Post.findOneAndUpdate(
         {_id:req.params.id},
         {
         title: standardizedTitle,
@@ -214,8 +214,22 @@ module.exports = {
         directions: req.body.directions.trim().split('\n'),
         }
       );
-
       console.log("Post has been edited!");
+      // Upload image to cloudinary
+      if (req.file){
+        await cloudinary.uploader.destroy(post.cloudinaryId);
+        const result = await cloudinary.uploader.upload(req.file.path);
+        await Post.findOneAndUpdate(
+          {_id:req.params.id},
+          {
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+          }
+        );
+        console.log("Image has been edited!");
+      } 
+
+      
       res.redirect("/my-recipes");
     } catch (err) {
       console.log(err);
