@@ -2,15 +2,10 @@
 <div class="container card-container">
   <div class="row justify-content-center">
       <div class="col-6">
-          <!-- <div>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <!-- <a href="/logout" class="col-3 btn btn-primary">Logout</a> -->
-          <!-- </div> --> 
           <div class="mt-5">
             <%if(post.user == user.id){ %>
                 <h2>Edit recipe</h2>
-                <form action="/post/editPost/<%= post._id %>?_method=PUT" method="POST">
+                <form action="/post/editPost/<%= post._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
                     <div class="mb-3">
                         <label for="title" class="form-label">Recipe Title</label>
                         <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>">
@@ -71,12 +66,12 @@
                         <label for="directions" class="form-label">Directions</label>
                         <textarea class="form-control" id="directions" name="directions" placeholder="Put each step on its own line." rows="5"><%= post.directions.join("") %></textarea>
                     </div>
-                <!--
+                
                     <div class="mb-3">
                         <label for="imgUpload" class="form-label">Upload to replace previous image</label>
                         <input type="file" class="form-control" id="imageUpload" name="file">
                     </div>
-                -->
+                
                     <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
                 </form>
             <%} else{%>

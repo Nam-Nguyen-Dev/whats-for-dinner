@@ -5,10 +5,10 @@ const Comment = require("../models/Comment")
 const capitalize = require("../utils/capitalize")
 
 module.exports = {
-  getProfile: async (req, res) => {
+  getAddRecipe: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      res.render("add-recipe.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -202,7 +202,7 @@ module.exports = {
     try {    
       const standardizedTitle = capitalize.capitalize(req.body.title)
 
-      await Post.findOneAndUpdate(
+      let post = await Post.findOneAndUpdate(
         {_id:req.params.id},
         {
         title: standardizedTitle,
@@ -214,24 +214,7 @@ module.exports = {
         directions: req.body.directions.trim().split('\n'),
         }
       );
-
       console.log("Post has been edited!");
-      res.redirect("/my-recipes");
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  getEditImage: async (req, res) => {
-    try {
-      let post = await Post.findById({ _id: req.params.id });
-      res.render("edit-image.ejs", { post: post, user: req.user });
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  editImage: async (req, res) => {
-    try {
-      let post = await Post.findById({ _id: req.params.id });
       // Upload image to cloudinary
       if (req.file){
         await cloudinary.uploader.destroy(post.cloudinaryId);
