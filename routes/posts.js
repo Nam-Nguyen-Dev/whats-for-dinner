@@ -15,8 +15,12 @@ router.put("/bookmarkPost/:id", postsController.bookmarkPost)
 
 router.delete("/deletePost/:id", postsController.deletePost);
 
-router.get("/edit/:id", ensureAuth, postsController.getEditPost);
+router.get("/editPost/:id", ensureAuth, postsController.getEditPost);
 
 router.put("/editPost/:id", postsController.editPost)
+
+router.get("/editImage/:id", ensureAuth, postsController.getEditImage);
+
+router.put("/editImage/:id", upload.single("file"), postsController.editImage)
 
 module.exports = router;
