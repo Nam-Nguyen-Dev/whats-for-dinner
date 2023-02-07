@@ -19,8 +19,4 @@ router.get("/editPost/:id", ensureAuth, postsController.getEditPost);
 
 router.put("/editPost/:id", upload.single("file"), postsController.editPost)
 
-router.get("/editImage/:id", ensureAuth, postsController.getEditImage);
-
-router.put("/editImage/:id", upload.single("file"), postsController.editImage)
-
 module.exports = router;
