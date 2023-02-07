@@ -199,22 +199,7 @@ module.exports = {
     }
   },
   editPost: async (req, res) => {
-    try {
-    //let post = await Post.findById({ _id: req.params.id });
-      // Upload image to cloudinary
-       //console.log('test',req)
-      if (req.body.file){
-        await cloudinary.uploader.destroy(post.cloudinaryId);
-        const result = await cloudinary.uploader.upload(req.body.file.path);
-        await Post.findOneAndUpdate(
-          {_id:req.params.id},
-          {
-          image: result.secure_url,
-          cloudinaryId: result.public_id,
-          }
-        );
-      } 
-    
+    try {    
       const standardizedTitle = capitalize.capitalize(req.body.title)
 
       await Post.findOneAndUpdate(
@@ -231,6 +216,37 @@ module.exports = {
       );
 
       console.log("Post has been edited!");
+      res.redirect("/my-recipes");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getEditImage: async (req, res) => {
+    try {
+      let post = await Post.findById({ _id: req.params.id });
+      res.render("edit-image.ejs", { post: post, user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  editImage: async (req, res) => {
+    try {
+      let post = await Post.findById({ _id: req.params.id });
+      // Upload image to cloudinary
+      if (req.file){
+        await cloudinary.uploader.destroy(post.cloudinaryId);
+        const result = await cloudinary.uploader.upload(req.file.path);
+        await Post.findOneAndUpdate(
+          {_id:req.params.id},
+          {
+          image: result.secure_url,
+          cloudinaryId: result.public_id,
+          }
+        );
+        console.log("Image has been edited!");
+      } 
+
+      
       res.redirect("/my-recipes");
     } catch (err) {
       console.log(err);
