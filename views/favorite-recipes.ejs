@@ -2,7 +2,6 @@
 
 <div class="container card-container">
   <h1>My Bookmarked Recipes</h1>
-  <% console.log(posts[0]) %> 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% for(var i=0; i<posts.length; i++) {%>
       <%if(posts[i].bookmarks.includes(user.id)) {%>
