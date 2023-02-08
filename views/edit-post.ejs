@@ -66,9 +66,13 @@
                         <label for="directions" class="form-label">Directions</label>
                         <textarea class="form-control" id="directions" name="directions" placeholder="Put each step on its own line." rows="5"><%= post.directions.join("") %></textarea>
                     </div>
-                
+                    
+                    <div>
+                        <span>Current image: </span>
+                        <img src="<%= post.image%>" class="card-img-top" alt="...">
+                    </div>
                     <div class="mb-3">
-                        <label for="imgUpload" class="form-label">Upload to replace previous image</label>
+                        <label for="imgUpload" class="form-label">Upload file to replace previous image. </label>
                         <input type="file" class="form-control" id="imageUpload" name="file">
                     </div>
                 
